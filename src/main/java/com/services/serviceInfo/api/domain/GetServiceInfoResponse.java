@@ -32,6 +32,12 @@ public GetServiceInfoResponse(String serviceId, String serviceName,
 	this.serviceProviderId = serviceProviderId;
 }
 /**
+ * 
+ */
+public GetServiceInfoResponse() {
+	super();
+}
+/**
  * @param serviceId the serviceId to set
  */
 public void setServiceId(String serviceId) {

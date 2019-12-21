@@ -6,7 +6,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.2.1.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.services.serviceInfo.api</groupId>
 	<artifactId>ExtGetServiceInfoAPI</artifactId>
@@ -15,6 +15,8 @@
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
+		<docker.image.prefix>apiservicesacr.azurecr.io</docker.image.prefix>
+		<jib-maven-plugin.version>1.7.0</jib-maven-plugin.version>
 		<java.version>1.8</java.version>
 	</properties>
 
@@ -47,6 +49,32 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+						<configuration>
+							<classifier>spring-boot</classifier>
+							<mainClass>
+								org.baeldung.executable.ExecutableMavenJar
+							</mainClass>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<artifactId>jib-maven-plugin</artifactId>
+				<groupId>com.google.cloud.tools</groupId>
+				<version>${jib-maven-plugin.version}</version>
+				<configuration>
+					<from>
+						<image>openjdk:8-jre-alpine</image>
+					</from>
+					<to>
+						<image>${docker.image.prefix}/extgetserviceinfoapi</image>
+					</to>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
