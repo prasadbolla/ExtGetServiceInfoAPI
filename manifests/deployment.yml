@@ -11,6 +11,6 @@ spec:
     spec:
       containers:
         - name: externalgetserviceinfoapidockercontainer 
-          image: apiservicesacr.azurecr.io/externalgetserviceinfoapidockercontainer
+          image: apiservicesacr.azurecr.io/externalgetserviceinfoapidockercontainer:latest
           ports:
           - containerPort: 80
