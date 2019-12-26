@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-    name: externalgetserviceinfoapidockercontainer-service
+    name: externalgetserviceinfoapidockercontainer
 spec:
     type: LoadBalancer
     ports:
