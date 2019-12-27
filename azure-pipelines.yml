@@ -33,8 +33,6 @@ steps:
    kubernetesServiceConnection: apiservice-akscluster-default
    namespace: default
    action: deploy
-   manifests: |
-     $(Pipeline.Workspace)/manifests/deployment.yml
-     $(Pipeline.Workspace)/manifests/service.yml
+   manifests: manifests/deployment.yml | manifests/service.yml
    imagePullSecrets: apiservicesacr1170c1a7-auth
    containers: apiservicesacr.azurecr.io/spring-demo:latest
