@@ -51,9 +51,6 @@ stages:
     command: buildAndPush
     repository: prasadbollaExtGetServiceInfoAPI
     tags: latest
-          
-    - upload: manifests
-      artifact: manifests
 
 - stage: Deploy
   displayName: Deploy stage
