@@ -1,4 +1,5 @@
 # Deploy to Azure Kubernetes Service
+# Deploy to Azure Kubernetes Service
 # Build and push image to Azure Container Registry; Deploy to Azure Kubernetes Service
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
 
@@ -10,6 +11,8 @@ resources:
 
 variables:
 
+ variables:
+
   # Container registry service connection established during pipeline creation
   dockerRegistryServiceConnection: '28080e51-84bd-4c4d-bbae-0f4ea1cf1d21'
   imageRepository: 'prasadbollaextgetserviceinfoapi'
@@ -17,12 +20,6 @@ variables:
  # dockerfilePath: '**/Dockerfile'
   tag: '$(Build.BuildId)'
   imagePullSecret: 'apiservicesacr1170c1a7-auth'
-
-  # Agent VM image name
-  vmImageName: 'ubuntu-latest'
-  
-  # Name of the new namespace being created to deploy the PR changes.
-  k8sNamespaceForPR: '$(system.pullRequest.sourceBranch)'
 
 stages:
 - stage: Build
@@ -33,15 +30,27 @@ stages:
     pool:
       vmImage: $(vmImageName)
     steps:
-    - task: Docker@2
-      displayName: Build and push an image to container registry
-      inputs:
-        command: buildAndPush
-        repository: $(imageRepository)
-        #dockerfile: $(dockerfilePath)
-        containerRegistry: $(dockerRegistryServiceConnection)
-        tags: |
-          $(tag)
+- task: Docker@2
+  displayName: Login to ACR
+  inputs:
+    command: login
+    containerRegistry: apiservicesacr
+- task: Maven@3
+  inputs:
+    mavenPomFile: 'pom.xml'
+    mavenOptions: '-Xmx3072m'
+    javaHomeOption: 'JDKVersion'
+    jdkVersionOption: '1.8'
+    jdkArchitectureOption: 'x64'
+    publishJUnitResults: false
+    testResultsFiles: '**/surefire-reports/TEST-*.xml'
+    goals: 'package -Dmaven.test.skip=true'
+- task: Docker@2
+  displayName: Build and Push
+  inputs:
+    command: buildAndPush
+    repository: prasadbollaExtGetServiceInfoAPI
+    tags: latest
           
     - upload: manifests
       artifact: manifests
@@ -79,7 +88,6 @@ stages:
                 $(imagePullSecret)
               containers: |
                 $(containerRegistry)/$(imageRepository):$(tag)
-
   - deployment: DeployPullRequest
     displayName: Deploy Pull request
     condition: and(succeeded(), startsWith(variables['Build.SourceBranch'], 'refs/pull/'))
