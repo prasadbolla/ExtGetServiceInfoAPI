@@ -28,13 +28,11 @@ steps:
     tags: latest
     
 - task: KubernetesManifest@0
-            displayName: Deploy to Kubernetes cluster
-            inputs:
-              action: deploy
-              manifests: |
-                $(Pipeline.Workspace)/manifests/deployment.yml
-                $(Pipeline.Workspace)/manifests/service.yml
-              imagePullSecrets: |
-                apiservicesacr1170c1a7-auth
-              containers: |
-                apiservicesacr.azurecr.io/spring-demo:latest
+  displayName: Deploy to Kubernetes cluster
+  inputs:
+   action: deploy
+   manifests: |
+     $(Pipeline.Workspace)/manifests/deployment.yml
+     $(Pipeline.Workspace)/manifests/service.yml
+   imagePullSecrets: apiservicesacr1170c1a7-auth
+   containers: apiservicesacr.azurecr.io/spring-demo:latest
