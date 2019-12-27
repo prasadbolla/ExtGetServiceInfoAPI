@@ -26,7 +26,8 @@ steps:
     command: buildAndPush
     repository: spring-demo
     tags: latest
-          - task: KubernetesManifest@0
+    
+          - task: KubernetesManifest@4
             displayName: Deploy to Kubernetes cluster
             inputs:
               action: deploy
