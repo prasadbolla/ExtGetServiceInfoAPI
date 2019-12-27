@@ -11,6 +11,19 @@ public class GetServiceInfoResponse {
 public String serviceId;
 public String serviceName;
 public String active;
+public String status; 
+/**
+ * @return the status
+ */
+public String getStatus() {
+	return status;
+}
+/**
+ * @param status the status to set
+ */
+public void setStatus(String status) {
+	this.status = status;
+}
 /**
  * @return the serviceId
  */
@@ -24,12 +37,13 @@ public String getServiceId() {
  * @param serviceProviderId
  */
 public GetServiceInfoResponse(String serviceId, String serviceName,
-		String active, String serviceProviderId) {
+		String active, String serviceProviderId, String status) {
 	super();
 	this.serviceId = serviceId;
 	this.serviceName = serviceName;
 	this.active = active;
 	this.serviceProviderId = serviceProviderId;
+	this.status=status;
 }
 /**
  * 
