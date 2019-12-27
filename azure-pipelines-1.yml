@@ -14,7 +14,7 @@ variables:
   dockerRegistryServiceConnection: '28080e51-84bd-4c4d-bbae-0f4ea1cf1d21'
   imageRepository: 'prasadbollaextgetserviceinfoapi'
   containerRegistry: 'apiservicesacr.azurecr.io'
-  dockerfilePath: '**/Dockerfile'
+ # dockerfilePath: '**/Dockerfile'
   tag: '$(Build.BuildId)'
   imagePullSecret: 'apiservicesacr1170c1a7-auth'
 
@@ -38,7 +38,7 @@ stages:
       inputs:
         command: buildAndPush
         repository: $(imageRepository)
-        dockerfile: $(dockerfilePath)
+        #dockerfile: $(dockerfilePath)
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
