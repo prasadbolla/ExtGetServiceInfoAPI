@@ -1,16 +1,21 @@
-apiVersion : apps/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: externalgetserviceinfoapidockercontainer
+  name: spring-demo-deployment
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: test-server
   template:
     metadata:
       labels:
-        app: externalgetserviceinfoapidockercontainer 
+        app: test-server
     spec:
       containers:
-        - name: externalgetserviceinfoapidockercontainer 
-          image: apiservicesacr.azurecr.io/externalgetserviceinfoapidockercontainer:latest
+        - name: test-server
+          image: apiservicesacr.azurecr.io/spring-demo:latest
+          imagePullPolicy: "Always"
           ports:
-          - containerPort: 80
+            - name: http-port
+              containerPort: 8080
