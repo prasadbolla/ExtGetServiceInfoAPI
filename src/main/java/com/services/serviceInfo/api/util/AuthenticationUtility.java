@@ -41,4 +41,35 @@ public class AuthenticationUtility {
 		return result.getAccessToken();
 
 	}
+	public static String getTokenMilton() {
+		AuthenticationContext context = null;
+		AuthenticationResult result = null;
+		ExecutorService service = null;
+
+		try {
+			service = Executors.newFixedThreadPool(1);
+
+			String tenantId = "4ef33c2d-f3ca-4762-86ae-68946432666f";
+			context = new AuthenticationContext(
+					"https://login.microsoftonline.com/" + tenantId, false,
+					service);
+			String clientId = "6b4ab6d3-56bf-4c5a-bee3-3bec45b317b7";
+			String clientSecret = "RWiJH./p.pC:SBTYFjQwJQ2kflmBu222";
+			// TODO: add your client id and client secret
+			ClientCredential cred = new ClientCredential(clientId, clientSecret);
+			Future<AuthenticationResult> future = context.acquireToken(
+					"https://management.azure.com/", cred, null);
+			result = future.get();
+
+			result = future.get();
+			System.out.println("Access Token - " + result.getAccessToken());
+
+		} catch (Exception e) {
+			e.getCause();
+		} finally {
+			service.shutdown();
+		}
+		return result.getAccessToken();
+
+	}
 }

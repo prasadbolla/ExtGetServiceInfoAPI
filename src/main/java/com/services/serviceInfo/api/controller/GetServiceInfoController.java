@@ -3,8 +3,6 @@
  */
 package com.services.serviceInfo.api.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,7 +28,7 @@ public class GetServiceInfoController {
 	public GetSubscriptionService getSubscriptionService;
 
 	@GetMapping(value = "/services/{tenentId}")
-	public ResponseEntity<List<GetServiceInfoResponse>> getServiceInfo(
+	public ResponseEntity<GetServiceInfoResponse> getServiceInfo(
 			@PathVariable String tenentId) {
 		return ResponseEntity.ok(getServiceInfoService.getGetServiceInfoList(tenentId));
 
