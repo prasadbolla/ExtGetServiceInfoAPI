@@ -18,7 +18,7 @@
 		<docker.image.prefix>apiservicesacr.azurecr.io</docker.image.prefix>
 		<jib-maven-plugin.version>1.7.0</jib-maven-plugin.version>
 		<java.version>1.8</java.version>
-		<spring-cloud.version>Hoxton.RELEASE</spring-cloud.version>
+		<!-- <spring-cloud.version>Hoxton.RELEASE</spring-cloud.version> -->
 	</properties>
 
 	<dependencies>
@@ -28,11 +28,11 @@
 			<artifactId>adal4j</artifactId>
 			<version>0.0.2</version>
 		</dependency>
-		<dependency>
+<!-- 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-feign</artifactId>
 			<version>1.4.3.RELEASE</version>
-		</dependency>
+		</dependency> -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -55,7 +55,7 @@
 			</exclusions>
 		</dependency>
 	</dependencies>
-	<dependencyManagement>
+<!-- 	<dependencyManagement>
 		<dependencies>
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
@@ -65,7 +65,7 @@
 				<scope>import</scope>
 			</dependency>
 		</dependencies>
-	</dependencyManagement>
+	</dependencyManagement> -->
 	<build>
 		<plugins>
 			<plugin>
