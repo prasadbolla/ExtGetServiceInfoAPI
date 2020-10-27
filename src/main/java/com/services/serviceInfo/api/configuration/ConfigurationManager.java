@@ -1,8 +1,3 @@
-/*
- * Bell Canada Confidential
- * Bell Canada 2018. All rights reserved.
- * Developed by IBM
- */
 package com.services.serviceInfo.api.configuration;
 
 import java.util.List;
